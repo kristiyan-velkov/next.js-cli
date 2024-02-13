@@ -1,0 +1,43 @@
+{
+  "name": "next.js-cli",
+  "version": "0.0.1",
+  "description": "This CLI tool is designed to automate and simplify common tasks in Next.js development, such as creating pages and components. It aims to improve developer productivity by providing easy-to-use commands for quickly scaffolding new parts of a Next.js application.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kristiyan-velkov/next.js-cli.git"
+  },
+  "keywords": [
+    "next.js",
+    "next.js-cli",
+    "cli",
+    "generate",
+    "next.js",
+    "components",
+    "generate",
+    "next.js",
+    "pages",
+    "generate",
+    "next.js",
+    "routes"
+  ],
+  "author": "Kristiyan Velkov",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kristiyan-velkov/next.js-cli/issues"
+  },
+  "homepage": "https://github.com/kristiyan-velkov/next.js-cli#readme",
+  "dependencies": {
+    "chalk": "^5.3.0",
+    "child_process": "^1.0.2",
+    "commander": "^12.0.0",
+    "fs-extra": "^11.2.0",
+    "inquirer": "^9.2.14"
+  },
+  "bin": {
+    "nx": "./index.js"
+  }
+}
