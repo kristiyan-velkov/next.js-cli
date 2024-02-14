@@ -18,7 +18,6 @@ program
   );
 
 // Create new Next.js project
-
 program
   .command("init")
   .alias("-i")
@@ -78,6 +77,8 @@ generate
   .option("--notf", "Generate not-found.tsx file")
   .option("--template", "Generate template.tsx file")
   .option("--t", "Generate template.tsx file")
+  .option("--middleware", "Generate middleware.tsx file")
+  .option("--m", "Generate middleware.tsx file")
   .action((name, path, options) => {
     if (options.page || options.p) {
       generateFile("page", name, path);
@@ -105,6 +106,10 @@ generate
 
     if (options.template || options.t) {
       generateFile("template", name, path);
+    }
+
+    if (options.middleware || options.m) {
+      generateFile("middleware", "", "");
     }
 
     if (!options || options.length === 0) {
@@ -172,5 +177,14 @@ generate
   .argument("[path]", "Path to create a not-found file.")
   .description("Generate not-found.tsx file.")
   .action((name, path) => generateFile("not-found", "", path));
+
+program.parse(process.argv);
+
+// Generate Middleware
+generate
+  .command("middleware")
+  .alias("m")
+  .description("Generate middleware.tsx file.")
+  .action(() => generateFile("middleware", "", ""));
 
 program.parse(process.argv);

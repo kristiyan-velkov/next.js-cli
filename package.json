@@ -40,6 +40,6 @@
   },
   "type": "module",
   "bin": {
-    "next-cli": "./index.js"
+    "next-cli": "./cli.js"
   }
 }

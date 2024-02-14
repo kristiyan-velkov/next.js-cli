@@ -9,7 +9,19 @@ import {
   globalErrorsTemplate,
   notFoundTemplate,
   templateFile,
+  middlewareTemplate,
 } from "./templates.js";
+
+const templates = {
+  page: pageTemplate,
+  loading: loadingTemplate,
+  layout: layoutTemplate,
+  error: errorTemplate,
+  template: templateFile,
+  "global-error": globalErrorsTemplate,
+  "not-found": notFoundTemplate,
+  middleware: middlewareTemplate,
+};
 
 export function generateFile(type, name, customPath) {
   const fileName = `${type}.tsx`;
@@ -18,40 +30,14 @@ export function generateFile(type, name, customPath) {
     : path.join(process.cwd(), "app", name);
   const filePath = path.join(directoryPath, fileName);
 
-  let template;
+  const templateFunction = templates[type];
 
-  if (type === "page") {
-    template = pageTemplate(name);
-  }
-
-  if (type === "loading") {
-    template = loadingTemplate(name);
-  }
-
-  if (type === "layout") {
-    template = layoutTemplate(name);
-  }
-
-  if (type === "error") {
-    template = errorTemplate();
-  }
-
-  if (type === "global-error") {
-    template = globalErrorsTemplate();
-  }
-
-  if (type === "not-found") {
-    template = notFoundTemplate();
-  }
-
-  if (type === "template") {
-    template = templateFile(name);
-  }
-
-  if (!template) {
+  if (!templateFunction) {
     console.log(color.redBright(`Unsupported file type: ${type}`));
     return;
   }
+
+  const template = templateFunction(name);
 
   if (!fs.existsSync(filePath)) {
     fs.ensureDirSync(directoryPath);
