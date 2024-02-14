@@ -16,27 +16,68 @@ program
     `
   );
 
-// Generate all
 generate
   .command("all")
-  .alias("a")
+  .alias("-all")
+  .description("Generate a new Next.js App routes with all files.")
+  .argument("<name>", "Name of Folder")
+  .argument("[path]", "Path to create the Route.")
+  .action((name, path) => {
+    generateFile("page", name, path);
+
+    generateFile("layout", name, path);
+
+    generateFile("loading", name, path);
+
+    generateFile("error", name, path);
+
+    generateFile("not-found", name, path);
+
+    if (!name && !path) {
+      console.log(color.red("Please specify --name and --path"));
+    }
+  });
+
+// Generate specific files
+generate
   .description("Generate a new Next.js App routes with files.")
   .argument("<name>", "Name of Folder")
   .argument("[path]", "Path to create the Route.")
   .option("--page", "Generate page.txs file")
+  .option("--p", "Generate page.txs file")
   .option("--layout", "Generate layout.tsx file")
+  .option("--l", "Generate layout.tsx file")
   .option("--loading", "Generate loading.tsx file")
+  .option("--load", "Generate loading.tsx file")
+  .option("--error", "Generate error.tsx file")
+  .option("--err", "Generate error.tsx file")
+  .option("--globalError", "Generate Global error.tsx file in the root")
+  .option("--gerr", "Generate Global error.tsx file in the root")
+  .option("--not-found", "Generate not-found.tsx file")
+  .option("--notf", "Generate not-found.tsx file")
   .action((name, path, options) => {
-    if (options.page) {
+    if (options.page || options.p) {
       generateFile("page", name, path);
     }
 
-    if (options.layout) {
+    if (options.layout || options.l) {
       generateFile("layout", name, path);
     }
 
-    if (options.loading) {
+    if (options.loading || options.load) {
       generateFile("loading", name, path);
+    }
+
+    if (options.error || options.err) {
+      generateFile("error", name, path);
+    }
+
+    if (options.globalError || options.gerr) {
+      generateFile("global-error", "", "");
+    }
+
+    if (options.globalError || options.gerr) {
+      generateFile("not-found", "", path);
     }
 
     // If no options are provided, show a message
@@ -77,6 +118,33 @@ generate
   .action((loadingName, loadingPath = "") =>
     generateFile("loading", loadingName, loadingPath)
   );
+
+// Generate Error
+generate
+  .command("error")
+  .alias("err")
+  .argument("<errorName>", "Name of the Error file")
+  .argument("[errorPath]", "Path to create a error file.")
+  .description("Generate a new Next.js error file.")
+  .action((errorName, errorPath = "") =>
+    generateFile("error", errorName, errorPath)
+  );
+
+// Generate Global Error
+generate
+  .command("globalError")
+  .alias("gerr")
+  .description("Generate global-error file.")
+  .action(() => generateFile("global-error", "", ""));
+
+// // Generate Not-Found page
+generate
+  .command("not-found")
+  .alias("notf")
+  .argument("[name]", "Name of the not-found file")
+  .argument("[path]", "Path to create a not-found file.")
+  .description("Generate not-found.tsx file.")
+  .action((name, path) => generateFile("not-found", "", path));
 
 // Command to generate a new component
 generate

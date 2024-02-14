@@ -1,7 +1,14 @@
-import { layoutTemplate, pageTemplate, loadingTemplate } from "./templates.js";
 import fs from "fs-extra";
 import path from "path";
 import color from "ansi-colors";
+import {
+  layoutTemplate,
+  pageTemplate,
+  loadingTemplate,
+  errorTemplate,
+  globalErrorsTemplate,
+  notFoundTemplate,
+} from "./templates.js";
 
 export function generateFile(type, name, customPath) {
   const fileName = `${type}.tsx`;
@@ -24,6 +31,18 @@ export function generateFile(type, name, customPath) {
     template = layoutTemplate(name);
   }
 
+  if (type === "error") {
+    template = errorTemplate();
+  }
+
+  if (type === "global-error") {
+    template = globalErrorsTemplate();
+  }
+
+  if (type === "not-found") {
+    template = notFoundTemplate();
+  }
+
   if (!template) {
     console.log(color.redBright(`Unsupported file type: ${type}`));
     return;
@@ -37,50 +56,3 @@ export function generateFile(type, name, customPath) {
     console.log(color.redBright(`${name} ${type} already exists.`));
   }
 }
-
-// // Utility function to generate page
-// export function generatePage(pageName, pagePath) {
-//   const fullPath = pagePath
-//     ? path.join(process.cwd(), "app", pagePath)
-//     : path.join(process.cwd(), "app", pageName);
-//   const filePath = path.join(fullPath, `page.tsx`);
-//   if (!fs.existsSync(filePath)) {
-//     fs.ensureDirSync(fullPath);
-//     fs.writeFileSync(filePath, pageTemplate(pageName)); // Assuming pageTemplate is a function that returns the template string
-//     console.log(color.greenBright(`${pageName} page has been created.`));
-//   } else {
-//     console.log(color.redBright(`${pageName} page already exists.`));
-//   }
-// }
-
-// // Utility function to generate layout
-// export function generateLayout(layoutName, layoutPath) {
-//   const fullPath = layoutPath
-//     ? path.join(process.cwd(), "app", layoutPath)
-//     : path.join(process.cwd(), "app", layoutName);
-//   const filePath = path.join(fullPath, `layout.tsx`);
-//   if (!fs.existsSync(filePath)) {
-//     fs.ensureDirSync(fullPath);
-//     fs.writeFileSync(filePath, layoutTemplate(layoutName)); // Assuming layoutTemplate is a function that returns the template string
-//     console.log(color.greenBright(`${layoutName} layout has been created.`));
-//   } else {
-//     console.log(
-//       color.redBright(`${layoutName} layout already exists at ${filePath}`)
-//     );
-//   }
-// }
-
-// export function generateLoading(loadingPath) {
-//   const fullPath = loadingPath
-//     ? path.join(process.cwd(), "app", loadingPath)
-//     : path.join(process.cwd(), "app", "");
-
-//   const filePath = path.join(fullPath, "loading.tsx");
-//   if (!fs.existsSync(filePath)) {
-//     fs.ensureDirSync(fullPath);
-//     fs.writeFileSync(filePath, loadingTemplate());
-//     console.log(color.greenBright(`Loading has been created.`));
-//   } else {
-//     console.log(color.redBright(`Loading already exists!`));
-//   }
-// }
