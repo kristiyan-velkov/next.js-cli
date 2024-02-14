@@ -1,11 +1,8 @@
 {
-  "name": "next.js-cli",
+  "name": "nextcli",
   "version": "0.0.1",
   "description": "This CLI tool is designed to automate and simplify common tasks in Next.js development, such as creating pages and components. It aims to improve developer productivity by providing easy-to-use commands for quickly scaffolding new parts of a Next.js application.",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+  "main": "cli.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/kristiyan-velkov/next.js-cli.git"
@@ -22,7 +19,12 @@
     "pages",
     "generate",
     "next.js",
-    "routes"
+    "routes",
+    "nextcli",
+    "generate next.js files",
+    "react.js",
+    "typescript",
+    "kristiyan velkov"
   ],
   "author": "Kristiyan Velkov",
   "license": "MIT",
@@ -40,6 +42,6 @@
   },
   "type": "module",
   "bin": {
-    "next-cli": "./cli.js"
+    "nc": "./cli.js"
   }
 }

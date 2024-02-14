@@ -75,9 +75,9 @@ generate
   .option("--middleware", "Generate middleware.tsx file")
   .option("--m", "Generate middleware.tsx file")
   .action((name, path, options) => {
-    // if (options.page || options["--p"]) {
-    //   generateFile("page", name, path);
-    // }
+    if (options.page || options.p) {
+      generateFile("page", name, path);
+    }
 
     if (options.layout || options.l) {
       generateFile("layout", name, path);
@@ -159,7 +159,7 @@ generate
 
 // Generate Global Error
 generate
-  .command("globalError")
+  .command("global-error")
   .alias("gerr")
   .description("Generate global-error file.")
   .action(() => generateFile("global-error", "", ""));
@@ -171,7 +171,7 @@ generate
   .argument("[name]", "Name of the not-found file")
   .argument("[path]", "Path to create a not-found file.")
   .description("Generate not-found.tsx file.")
-  .action((name, path) => generateFile("not-found", "", path));
+  .action((name, path) => generateFile("not-found", name, path));
 
 // Generate Middleware
 generate
