@@ -95,7 +95,7 @@ export default function NotFound() {
 };
 
 export const templateFile = (templateName) => {
-  return `export default function Home2Template({
+  return `export default function ${capitalize(templateName)}Template({
   children,
 }: {
   children: React.ReactNode;
@@ -105,7 +105,7 @@ export const templateFile = (templateName) => {
 `;
 };
 
-export const middlewareTemplate = (middlewareName) => {
+export const middlewareTemplate = () => {
   return `import { NextRequest } from "next/server";
 
 // This function can be marked async if using await inside

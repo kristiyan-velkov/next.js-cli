@@ -13,8 +13,7 @@ program
   .description(
     `${color.bgGreenBright(" NEXT.JS CLI ")} - ${color.bgCyan(
       " Author: Kristiyan Velkov "
-    )}
-    `
+    )}`
   );
 
 // Create new Next.js project
@@ -38,19 +37,15 @@ program
 
 generate
   .command("all")
-  .alias("-all")
+  .alias("a")
   .description("Generate a new Next.js App routes with all files.")
   .argument("<name>", "Name of Folder")
   .argument("[path]", "Path to create the Route.")
   .action((name, path) => {
     generateFile("page", name, path);
-
     generateFile("layout", name, path);
-
     generateFile("loading", name, path);
-
     generateFile("error", name, path);
-
     generateFile("not-found", name, path);
 
     if (!name && !path) {
@@ -80,9 +75,9 @@ generate
   .option("--middleware", "Generate middleware.tsx file")
   .option("--m", "Generate middleware.tsx file")
   .action((name, path, options) => {
-    if (options.page || options.p) {
-      generateFile("page", name, path);
-    }
+    // if (options.page || options["--p"]) {
+    //   generateFile("page", name, path);
+    // }
 
     if (options.layout || options.l) {
       generateFile("layout", name, path);
@@ -177,8 +172,6 @@ generate
   .argument("[path]", "Path to create a not-found file.")
   .description("Generate not-found.tsx file.")
   .action((name, path) => generateFile("not-found", "", path));
-
-program.parse(process.argv);
 
 // Generate Middleware
 generate

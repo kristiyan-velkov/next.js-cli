@@ -34,31 +34,41 @@ yarn global add next-cli
 
 ## Commands and Usage
 
-Below is a summary of available commands and their usage:
-
-import React from 'react';
-import { CommandTable } from './components/CommandTable'; // Hypothetical component
-
-# Next-CLI Commands
-
 `next-cli` is a powerful CLI tool designed for Next.js.
 Below is a summary of the commands you can use:
 
-| Command              | Alias | Description                              | Usage                                                                          |
-| -------------------- | ----- | ---------------------------------------- | ------------------------------------------------------------------------------ |
-| generate page        | p     | Generate a new Next.js page              | `next-cli generate page <pageName> [path]` or `next-cli g p <pageName> [path]` |
-| generate layout      | l     | Generate a new Next.js layout            | `next-cli generate layout <layoutName> [path]`                                 |
-| generate loading     | load  | Generate a new Next.js loading component | `next-cli generate loading <loadingName> [path]`                               |
-| generate error       | err   | Generate a new Next.js error component   | `next-cli generate error <errorName> [path]`                                   |
-| generate globalError | gerr  | Generate a global error file             | `next-cli generate globalError`                                                |
-| generate not-found   | notf  | Generate a not-found page                | `next-cli generate not-found [name] [path]`                                    |
-| generate template    | t     | Generate a new Next.js template          | `next-cli generate template <templateName> [path]`                             |
-| generate component   | c     | Generate a new Next.js component         | `next-cli generate component <componentName>`                                  |
-| generate all         | -all  | Generate all specified types of files    | `next-cli generate all <name> [path] --options`                                |
+| Command        | Alias  | Arguments       | Description                                                                                                                    |
+| -------------- | ------ | --------------- | ------------------------------------------------------------------------------------------------------------------------------ |
+| `init`         | `-i`   | `<name>`        | Create a new Next.js App. Requires the name of the project.                                                                    |
+| `generate all` | `-all` | `<name> [path]` | Generate a new Next.js App routes with all files. Requires the name of the folder and optionally the path to create the route. |
 
-## Contributing
+## Commands Details
 
-Contributions are welcome! If you have suggestions for improving `next-cli`, please open an issue or submit a pull request.
+### init
+
+The `init` command is used to create a new Next.js application. It requires a single argument:
+
+- `<name>`: Name of the project to create.
+
+Example usage:
+
+```
+next-cli init "My Next App"
+```
+
+### generate all
+
+The `generate all` command is used to generate all the files for a new route in a Next.js application. It requires the following arguments:
+
+- `<name>`: Name of the Folder where the route will be created.
+- `[path]`: Optional. The path where the route will be created. If not provided, the current directory is used.
+
+Example usage:
+
+```
+next-cli generate all "Blog" "/blog"
+
+```
 
 ---
 
@@ -82,5 +92,11 @@ If you like my work and want to support me to work harder, please donate via
 <a href="https://revolut.me/kristiyanvelkov" title="Link to Revolut">Revolut</a> | <a href="https://www.buymeacoffee.com/kristiyanVelkov" title="Link to Buy me a coffee">Buy me a coffee</a>
 
 Thanks a bunch for supporting me! 😍
+
+---
+
+## Contributing
+
+Contributions are welcome! If you have suggestions for improving `next-cli`, please open an issue or submit a pull request.
 
 ---
