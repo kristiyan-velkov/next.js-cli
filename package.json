@@ -39,6 +39,6 @@
   },
   "type": "module",
   "bin": {
-    "nx": "./index.js"
+    "next-cli": "./index.js"
   }
 }

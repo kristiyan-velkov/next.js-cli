@@ -8,6 +8,7 @@ import {
   errorTemplate,
   globalErrorsTemplate,
   notFoundTemplate,
+  templateFile,
 } from "./templates.js";
 
 export function generateFile(type, name, customPath) {
@@ -41,6 +42,10 @@ export function generateFile(type, name, customPath) {
 
   if (type === "not-found") {
     template = notFoundTemplate();
+  }
+
+  if (type === "template") {
+    template = templateFile(name);
   }
 
   if (!template) {

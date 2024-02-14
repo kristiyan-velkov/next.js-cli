@@ -55,6 +55,8 @@ generate
   .option("--gerr", "Generate Global error.tsx file in the root")
   .option("--not-found", "Generate not-found.tsx file")
   .option("--notf", "Generate not-found.tsx file")
+  .option("--template", "Generate template.tsx file")
+  .option("--t", "Generate template.tsx file")
   .action((name, path, options) => {
     if (options.page || options.p) {
       generateFile("page", name, path);
@@ -80,9 +82,12 @@ generate
       generateFile("not-found", "", path);
     }
 
-    // If no options are provided, show a message
-    if (!options.page && !options.layout && !options.loading) {
-      console.log(color.red("Please specify --page, --layout, or --loading"));
+    if (options.template || options.t) {
+      generateFile("template", name, path);
+    }
+
+    if (!options || options.length === 0) {
+      console.log(color.red("Please specify options"));
     }
   });
 
@@ -137,7 +142,7 @@ generate
   .description("Generate global-error file.")
   .action(() => generateFile("global-error", "", ""));
 
-// // Generate Not-Found page
+// Generate Not-Found page
 generate
   .command("not-found")
   .alias("notf")
@@ -145,6 +150,17 @@ generate
   .argument("[path]", "Path to create a not-found file.")
   .description("Generate not-found.tsx file.")
   .action((name, path) => generateFile("not-found", "", path));
+
+// Generate Template
+generate
+  .command("template")
+  .alias("t")
+  .argument("<templateName>", "Name of the template")
+  .argument("[templatePath]", "Path to create a template file.")
+  .description("Generate a new Next.js template")
+  .action((templateName, templatePath = "") =>
+    generateFile("template", templateName, templatePath)
+  );
 
 // Command to generate a new component
 generate

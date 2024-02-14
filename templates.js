@@ -93,3 +93,14 @@ export default function NotFound() {
 }
 `;
 };
+
+export const templateFile = (templateName) => {
+  return `export default function Home2Template({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  return <div>{children}</div>;
+}
+`;
+};
