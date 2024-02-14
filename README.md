@@ -1,8 +1,11 @@
-# Next CLI
-
 [![Follow me](https://img.shields.io/badge/sponsors-99+-orange.svg)](https://github.com/kristiyan-velkov) [![Sponsors](https://img.shields.io/badge/Follow-120-blue?logo=github&style=social.svg)](https://github.com/kristiyan-velkov) [![MIT License](https://img.shields.io/badge/License-MIT-yellow.svg)](https://choosealicense.com/licenses/mit/) [![Node Version](https://img.shields.io/badge/node-%3E%3D%2020.0.0-brightgreen.svg)](https://nodejs.org/en/)
 
-![](next-js-cli.png)
+<p align="center">
+    <picture>
+      <source media="(prefers-color-scheme: dark)" srcset="./next-js-cli.png">
+      <img src="./next-js-cli.png" height="128">
+    </picture>
+</p>
 
 **Next.js CLI** is a powerful command-line interface tool designed to accelerate the development of Next.js applications by automating the generation of common file types, such as **pages, layouts**, **templates, errors, middlewares and more**.
 
@@ -26,13 +29,13 @@ Built with ease of use in mind, it streamlines the setup of new routes and compo
 To use Next JS CLI, you need to have Node.js installed on your system. Once Node.js is installed, you can install next-cli globally using npm:
 
 ```txt
-npm install -g nextcli
+npm install -g nextjs-command-line-tool
 ```
 
 Or if you prefer using Yarn:
 
 ```txt
-yarn global add nextcli
+yarn global add nextjs-command-line-tool
 ```
 
 ## Commands and Usage
@@ -241,7 +244,9 @@ Please, contact the creator of the **Next CLI**, so he will be able to fix or im
 
 **Kristiyan Velkov**
 
-[![linkedin](https://img.shields.io/badge/linkedin-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/kristiyan-velkov-763130b3/) [![portfolio](https://img.shields.io/badge/my_portfolio-000?style=for-the-badge&logo=ko-fi&logoColor=white)](https://github.com/christiyan14)
+[![linkedin](https://img.shields.io/badge/linkedin-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/kristiyan-velkov-763130b3/) [![portfolio](https://img.shields.io/badge/my_portfolio-000?style=for-the-badge&logo=ko-fi&logoColor=white)](https://github.com/kristiyan-velkov)
+
+**Take a look my blog in Medium**: [Kristiyan Velkov](https://medium.com/@kristiyan.velkov)
 
 ---
 
