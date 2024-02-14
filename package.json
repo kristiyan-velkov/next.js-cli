@@ -31,12 +31,13 @@
   },
   "homepage": "https://github.com/kristiyan-velkov/next.js-cli#readme",
   "dependencies": {
-    "chalk": "^5.3.0",
+    "ansi-colors": "^4.1.3",
     "child_process": "^1.0.2",
     "commander": "^12.0.0",
     "fs-extra": "^11.2.0",
     "inquirer": "^9.2.14"
   },
+  "type": "module",
   "bin": {
     "nx": "./index.js"
   }

@@ -1,34 +1,88 @@
 #!/usr/bin/env node
+import { Command } from "commander";
+import fs from "fs-extra";
+import path from "path";
+import color from "ansi-colors";
+import { layoutTemplate, pageTemplate, loadingTemplate } from "./templates.js";
+// Import spawn if you need it later, uncomment and convert as shown
+// import { spawn } from 'child_process';
 
-const { Command } = require("commander");
-const fs = require("fs-extra");
-const path = require("path");
-// const { spawn } = require("child_process");
 const program = new Command();
 const generate = program.command("generate").alias("g");
 
 program
   .name("next-cli")
-  .description("CLI to automate Next.js tasks")
-  .version("0.1.0");
+  .version("0.0.1")
+  .description(
+    `${color.bgGreenBright(" NEXT.JS CLI ")} - ${color.bgCyan(
+      " Author: Kristiyan Velkov "
+    )}
+    `
+  );
 
 // Command to generate a new page
 generate
-  .command("page <name>")
+  .command("page")
   .alias("p")
-  .description("Generate a new Next.js page")
-  .action((name) => {
-    const pageTemplate = `export default function ${name}() {
-  return <div>Welcome to ${name} page</div>;
-}`;
-    const dirPath = path.join(process.cwd(), "pages");
-    const filePath = path.join(dirPath, `${name}.js`);
+  .argument("<pageName>", "Name of the Page")
+  .argument("[pagePath]", "Path to create a page.")
+  .description("Generate a new Next.js Page")
+  .action((pageName, pagePath = "") => {
+    const fullPath = pagePath
+      ? path.join(process.cwd(), "app", pagePath)
+      : path.join(process.cwd(), "app", pageName);
 
-    fs.ensureDirSync(dirPath);
-    fs.writeFileSync(filePath, pageTemplate);
-    import("chalk").then((chalk) => {
-      console.log(chalk.green(`Page ${name} has been created at ${filePath}`));
-    });
+    const filePath = path.join(fullPath, "page.tsx");
+    if (!fs.existsSync(filePath)) {
+      fs.ensureDirSync(fullPath);
+      fs.writeFileSync(filePath, pageTemplate(pageName));
+      console.log(color.greenBright(`${pageName} page has been created.`));
+    } else {
+      console.log(color.redBright(`${pageName} page already exists!`));
+    }
+  });
+
+// Generate Layout
+generate
+  .command("layout")
+  .alias("l")
+  .argument("<layoutName>", "Name of the Layout")
+  .argument("[layoutPath]", "Path to create a layout file.")
+  .description("Generate a new Next.js Layout")
+  .action((layoutName, layoutPath = "") => {
+    const fullPath = layoutPath
+      ? path.join(process.cwd(), "app", layoutPath)
+      : path.join(process.cwd(), "app", layoutName);
+
+    const filePath = path.join(fullPath, "layout.tsx");
+    if (!fs.existsSync(filePath)) {
+      fs.ensureDirSync(fullPath);
+      fs.writeFileSync(filePath, layoutTemplate(layoutName));
+      console.log(color.greenBright(`${layoutName} layout has been created.`));
+    } else {
+      console.log(color.redBright(`${layoutName} layout already exists!`));
+    }
+  });
+
+// Generate Loading
+generate
+  .command("loading")
+  .alias("load")
+  .argument("[loadingPath]", "Path to create a loading file.")
+  .description("Generate a new Next.js Loading file.")
+  .action((loadingPath = "") => {
+    const fullPath = loadingPath
+      ? path.join(process.cwd(), "app", loadingPath)
+      : path.join(process.cwd(), "app", "");
+
+    const filePath = path.join(fullPath, "loading.tsx");
+    if (!fs.existsSync(filePath)) {
+      fs.ensureDirSync(fullPath);
+      fs.writeFileSync(filePath, loadingTemplate());
+      console.log(color.greenBright(`Loading has been created.`));
+    } else {
+      console.log(color.redBright(`Loading already exists!`));
+    }
   });
 
 // Command to generate a new component
@@ -67,33 +121,5 @@ generate
 //       if (stderr) console.error(stderr);
 //     });
 //   });
-
-// Generate Layout
-
-generate
-  .command("layout <path> <layoutName>")
-  .alias("l")
-  .description("Generate a new Next.js layout component")
-  .action((layoutPath = "", layoutName = "Layout") => {
-    const fullPath = layoutPath
-      ? path.join(process.cwd(), layoutPath)
-      : path.join(process.cwd(), "src", "layouts");
-    const layoutTemplate = `import React from 'react';
-
-export default function ${layoutName}Layout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
-  return <section>{children}</section>;
-}`;
-
-    const filePath = path.join(fullPath, `${layoutName}.tsx`);
-    fs.ensureDirSync(fullPath);
-    fs.writeFileSync(filePath, layoutTemplate);
-    console.log(
-      `Layout component ${layoutName} has been created at ${filePath}`
-    );
-  });
 
 program.parse(process.argv);
