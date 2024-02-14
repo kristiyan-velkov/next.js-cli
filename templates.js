@@ -18,8 +18,8 @@ export const layoutTemplate = (layoutName) => {
 }`;
 };
 
-export const loadingTemplate = () => {
-  return `export default function Loading() {
+export const loadingTemplate = (loadingName) => {
+  return `export default function ${capitalize(loadingName)}Loading() {
   // Or a custom loading skeleton component
   return <p>Loading...</p>
 }`;

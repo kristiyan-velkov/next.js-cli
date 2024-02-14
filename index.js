@@ -1,11 +1,7 @@
 #!/usr/bin/env node
 import { Command } from "commander";
-import fs from "fs-extra";
-import path from "path";
+import { generateFile } from "./utils.js";
 import color from "ansi-colors";
-import { layoutTemplate, pageTemplate, loadingTemplate } from "./templates.js";
-// Import spawn if you need it later, uncomment and convert as shown
-// import { spawn } from 'child_process';
 
 const program = new Command();
 const generate = program.command("generate").alias("g");
@@ -20,6 +16,35 @@ program
     `
   );
 
+// Generate all
+generate
+  .command("all")
+  .alias("a")
+  .description("Generate a new Next.js App routes with files.")
+  .argument("<name>", "Name of Folder")
+  .argument("[path]", "Path to create the Route.")
+  .option("--page", "Generate page.txs file")
+  .option("--layout", "Generate layout.tsx file")
+  .option("--loading", "Generate loading.tsx file")
+  .action((name, path, options) => {
+    if (options.page) {
+      generateFile("page", name, path);
+    }
+
+    if (options.layout) {
+      generateFile("layout", name, path);
+    }
+
+    if (options.loading) {
+      generateFile("loading", name, path);
+    }
+
+    // If no options are provided, show a message
+    if (!options.page && !options.layout && !options.loading) {
+      console.log(color.red("Please specify --page, --layout, or --loading"));
+    }
+  });
+
 // Command to generate a new page
 generate
   .command("page")
@@ -27,20 +52,9 @@ generate
   .argument("<pageName>", "Name of the Page")
   .argument("[pagePath]", "Path to create a page.")
   .description("Generate a new Next.js Page")
-  .action((pageName, pagePath = "") => {
-    const fullPath = pagePath
-      ? path.join(process.cwd(), "app", pagePath)
-      : path.join(process.cwd(), "app", pageName);
-
-    const filePath = path.join(fullPath, "page.tsx");
-    if (!fs.existsSync(filePath)) {
-      fs.ensureDirSync(fullPath);
-      fs.writeFileSync(filePath, pageTemplate(pageName));
-      console.log(color.greenBright(`${pageName} page has been created.`));
-    } else {
-      console.log(color.redBright(`${pageName} page already exists!`));
-    }
-  });
+  .action((pageName, pagePath = "") =>
+    generateFile("page", pageName, pagePath)
+  );
 
 // Generate Layout
 generate
@@ -49,41 +63,20 @@ generate
   .argument("<layoutName>", "Name of the Layout")
   .argument("[layoutPath]", "Path to create a layout file.")
   .description("Generate a new Next.js Layout")
-  .action((layoutName, layoutPath = "") => {
-    const fullPath = layoutPath
-      ? path.join(process.cwd(), "app", layoutPath)
-      : path.join(process.cwd(), "app", layoutName);
-
-    const filePath = path.join(fullPath, "layout.tsx");
-    if (!fs.existsSync(filePath)) {
-      fs.ensureDirSync(fullPath);
-      fs.writeFileSync(filePath, layoutTemplate(layoutName));
-      console.log(color.greenBright(`${layoutName} layout has been created.`));
-    } else {
-      console.log(color.redBright(`${layoutName} layout already exists!`));
-    }
-  });
+  .action((layoutName, layoutPath = "") =>
+    generateFile("layout", layoutName, layoutPath)
+  );
 
 // Generate Loading
 generate
   .command("loading")
   .alias("load")
+  .argument("<loadingName>", "Name of the Loading file")
   .argument("[loadingPath]", "Path to create a loading file.")
   .description("Generate a new Next.js Loading file.")
-  .action((loadingPath = "") => {
-    const fullPath = loadingPath
-      ? path.join(process.cwd(), "app", loadingPath)
-      : path.join(process.cwd(), "app", "");
-
-    const filePath = path.join(fullPath, "loading.tsx");
-    if (!fs.existsSync(filePath)) {
-      fs.ensureDirSync(fullPath);
-      fs.writeFileSync(filePath, loadingTemplate());
-      console.log(color.greenBright(`Loading has been created.`));
-    } else {
-      console.log(color.redBright(`Loading already exists!`));
-    }
-  });
+  .action((loadingName, loadingPath = "") =>
+    generateFile("loading", loadingName, loadingPath)
+  );
 
 // Command to generate a new component
 generate
@@ -105,21 +98,5 @@ generate
       );
     });
   });
-
-// // Command to initialize a new Next.js project
-// generate
-//   .command("init")
-//   .description("Initialize a new Next.js project")
-//   .action(() => {
-//     console.log(`Initializing a new Next.js project...`);
-//     spawn(`npx create-next-app@latest`, (error, stdout, stderr) => {
-//       if (error) {
-//         console.error(`exec error: ${error}`);
-//         return;
-//       }
-//       console.log(stdout);
-//       if (stderr) console.error(stderr);
-//     });
-//   });
 
 program.parse(process.argv);
