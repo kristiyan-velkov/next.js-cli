@@ -16,9 +16,8 @@ Built with ease of use in mind, it streamlines the setup of new routes and compo
 ## Table of contents
 
 - [Installation 🔋](#installation)
-- [Commands and Usage 💻](#commands-and-usage)
-- [Commands Details 📋](#commands-details)
-- [How to Create a File? 🪧](#how-to-create-a-file)
+- [Commands 💻](#commands)
+- [Usage 📋](#usage)
 - [Developer Support 🔗 ](#developer-support)
 - [Contributing 🦾](#contributing)
 - [Support my work ❤️ ](#support-my-work)
@@ -39,20 +38,11 @@ Or if you prefer using Yarn:
 yarn global add next-cli-turbo
 ```
 
-## Commands and Usage
-
-`next-cli` is a powerful CLI tool designed for Next.js.
-Below is a summary of the commands you can use:
-
-| Command                     | Alias               | Arguments         | Description                                                                                                              |
-| --------------------------- | ------------------- | ----------------- | ------------------------------------------------------------------------------------------------------------------------ |
-| `init`                      | `i`                 | `<projectName>`   | Create a new Next.js App. Requires the name of the project.                                                              |
-| `generate [path] --options` | `g [path] --option` | `[path] --option` | Generate specific Next.js App files. Requires the name of the folder and optionally the path. Supports multiple options. |
-| `generate root --options`   | `g -r --options`    | `--options`       | Generate middleware.tsx or global-error.tsx in the app folder root.                                                      |
-
-## Commands Details
+## Commands
 
 ### init
+
+⌛️ nc g i `<projectName>`
 
 The `init` command is used to create a new Next.js application. It requires a single argument:
 
@@ -65,7 +55,12 @@ nc init my-next-app
 nc i my-next-app
 ```
 
-### generate [path] -all / g [path] -a
+---
+
+### generate all
+
+🧪 nc generate [path] --all
+⌛️ nc g [path] -a
 
 The generate all command has been augmented to automatically create a set of predefined files (**page, loading, error, not-found**) for a new route. This is useful for quickly scaffolding the basic structure of a route within a Next.js application.
 
@@ -95,7 +90,11 @@ nc g -a users
 ---loading.tsx
 ```
 
-### generate / g
+---
+
+### generate
+
+⌛️ nc g [path] --option
 
 This command has been extended to support the generation of specific files within a Next.js application. Users can specify which files they want to generate using options.
 
@@ -155,9 +154,14 @@ nc g dashboard dashboard -p -err -not
 
 - If any file of the options above already exists the command to creat new one will be skiped.
 
-## How to create a file?
+---
 
-### Page.tsx - generate [path] --page / g [path] -p
+## Usage
+
+### Page.tsx file
+
+🧪 nc generate [path] --page
+⌛️ nc g [path] -p
 
 This command simplifies the creation of individual pages within a Next.js application by specifying the path of the page and, optionally, the name where it should be created.
 
@@ -182,7 +186,12 @@ nc g users -p
 ---page.tsx
 ```
 
-### Layout.tsx - generate [path] --layout / g [path] -l
+---
+
+### Layout.tsx file
+
+🧪 nc generate [path] --layout
+⌛️ nc g [path] -l
 
 This command is tailored for creating layout components, which serve as templates for various parts of a Next.js application, ensuring consistency across different pages. By specifying the name of the layout and, optionally, the path, developers can quickly scaffold necessary layout components.
 
@@ -207,7 +216,12 @@ nc g users -l -n Users
 ---layout.tsx // name of the function in layout.tsx file - UsersLayout
 ```
 
-### Loading.tsx - generate [path] --loading / g [path] -load
+---
+
+### Loading.tsx file
+
+🧪 nc generate [path] --loading
+⌛️ nc g [path] -load
 
 This command is tailored for creating loading components.
 
@@ -232,7 +246,12 @@ nc g users -load -n Users
 ---loading.tsx // name of the function in loading.tsx file - UsersLoading
 ```
 
-### Error.tsx - generate [path] --error / g [path] -err
+---
+
+### Error.tsx
+
+🧪 nc generate [path] --error
+⌛️ nc g [path] -err
 
 Create error.tsx file.
 
@@ -256,7 +275,12 @@ nc g users -err
 ---error.tsx
 ```
 
-### Template.tsx - generate [path] --template / g [path] -t
+---
+
+### Template.tsx
+
+🧪 nc generate [path] --template
+⌛️ nc g [path] -t
 
 Create template.tsx file.
 
@@ -280,7 +304,12 @@ nc g users -t
 ---error.tsx
 ```
 
-### Not-found.tsx - generate [page] --not-found / g [page] -not
+---
+
+### Not-found.tsx file
+
+🧪 nc generate [page] --not-found
+⌛️ nc g [page] -not
 
 Generate not-found.tsx file.
 
@@ -303,7 +332,12 @@ nc g users -not
 ---not-found.tsx
 ```
 
-### Global-error.tsx - generate root --global-error / g r -g
+---
+
+### Global-error.tsx file
+
+🧪 nc generate root --global-error
+⌛️ nc g r -g
 
 Generate global-error.tsx file in the root of the project.
 
@@ -321,7 +355,12 @@ nc g r -g
 --global.tsx
 ```
 
-### Middleware.tsx - generate root -middleware / g r -m
+---
+
+### Middleware.tsx file
+
+🧪 nc generate root --middleware
+⌛️ nc g r -m
 
 Generate middleware.tsx file.
 
