@@ -37,26 +37,6 @@ program
     }
   });
 
-// generate
-//   .command("all")
-//   .alias("a")
-//   .description("Generate a new Next.js App routes with all files.")
-//   .argument("<path>", "Provide Path where to create a file.")
-//   .option("-n, --name <value>", "Name of the function in the file.", "")
-//   .action((path, options) => {
-//     const { name } = options;
-
-//     generateFile("page", path, name);
-//     generateFile("loading", path, name);
-//     generateFile("error", path, name);
-//     generateFile("not-found", path, name);
-
-//     if (!name && !path) {
-//       console.log(color.red("Please specify --name and --path"));
-//     }
-//   });
-
-// Generate specific files
 generate
   .description("Generate a new Next.js App routes with files.")
   .argument("<path>", "Provide Path where to create a file.")
