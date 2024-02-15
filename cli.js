@@ -45,27 +45,15 @@ generate
   .option("-l,--layout", "Generate layout.tsx file", "test")
   .option("-load, --loading", "Generate loading.tsx file")
   .option("-err, --error", "Generate error.tsx file")
-  .option("-g,--global-error", "Generate global-error.tsx file in the root")
   .option("-not,--not-found ", "Generate not-found.tsx file")
   .option("-t, --template", "Generate template.tsx file")
-  .option("-m,--middleware", "Generate middleware.tsx file")
   .option(
     "-a,--all",
     "Generate page.tsx, loading.tsx, error.tsx, not-found.tsx files."
   )
   .action((path, options) => {
-    const {
-      all,
-      name,
-      page,
-      layout,
-      loading,
-      error,
-      template,
-      notFound,
-      middleware,
-      globalError,
-    } = options;
+    const { all, name, page, layout, loading, error, template, notFound } =
+      options;
 
     if (all) {
       generateFile("page", path, name);
@@ -98,12 +86,26 @@ generate
       generateFile("not-found", path, name);
     }
 
-    if (middleware) {
-      generateFile("middleware", "", "");
+    if (!options || options.length === 0) {
+      console.log(color.red("Please specify options to generate files."));
     }
+  });
+
+generate
+  .command("root")
+  .alias("r")
+  .description("Generate middleware.tsx and global-error.tsx files.")
+  .option("-g,--global-error", "Generate global-error.tsx file in the root")
+  .option("-m,--middleware", "Generate middleware.tsx file")
+  .action((options) => {
+    const { middleware, globalError } = options;
 
     if (globalError) {
       generateFile("global-error", "", "");
+    }
+
+    if (middleware) {
+      generateFile("middleware", "", "");
     }
 
     if (!options || options.length === 0) {
