@@ -19,14 +19,16 @@ program
 // Create new Next.js project
 program
   .command("init")
-  .alias("-i")
-  .argument("<name>", "Name of project")
+  .alias("i")
+  .argument("<projectName>", "Name of project")
   .description("Create a new Next.js App.")
-  .action(async (name) => {
+  .action(async (projectName) => {
     try {
-      await execa("npx", ["create-next-app", name], { stdio: "inherit" });
+      await execa("npx", ["create-next-app", projectName], {
+        stdio: "inherit",
+      });
       console.log(
-        color.greenBright(`Next.js app ${name} created successfully!`)
+        color.greenBright(`Next.js app ${projectName} created successfully!`)
       );
     } catch (error) {
       console.error(
@@ -35,149 +37,98 @@ program
     }
   });
 
-generate
-  .command("all")
-  .alias("a")
-  .description("Generate a new Next.js App routes with all files.")
-  .argument("<name>", "Name of Folder")
-  .argument("[path]", "Path to create the Route.")
-  .action((name, path) => {
-    generateFile("page", name, path);
-    generateFile("layout", name, path);
-    generateFile("loading", name, path);
-    generateFile("error", name, path);
-    generateFile("not-found", name, path);
+// generate
+//   .command("all")
+//   .alias("a")
+//   .description("Generate a new Next.js App routes with all files.")
+//   .argument("<path>", "Provide Path where to create a file.")
+//   .option("-n, --name <value>", "Name of the function in the file.", "")
+//   .action((path, options) => {
+//     const { name } = options;
 
-    if (!name && !path) {
-      console.log(color.red("Please specify --name and --path"));
-    }
-  });
+//     generateFile("page", path, name);
+//     generateFile("loading", path, name);
+//     generateFile("error", path, name);
+//     generateFile("not-found", path, name);
+
+//     if (!name && !path) {
+//       console.log(color.red("Please specify --name and --path"));
+//     }
+//   });
 
 // Generate specific files
 generate
   .description("Generate a new Next.js App routes with files.")
-  .argument("<name>", "Name of Folder")
-  .argument("[path]", "Path to create the Route.")
-  .option("--page", "Generate page.txs file")
-  .option("--p", "Generate page.txs file")
-  .option("--layout", "Generate layout.tsx file")
-  .option("--l", "Generate layout.tsx file")
-  .option("--loading", "Generate loading.tsx file")
-  .option("--load", "Generate loading.tsx file")
-  .option("--error", "Generate error.tsx file")
-  .option("--err", "Generate error.tsx file")
-  .option("--globalError", "Generate Global error.tsx file in the root")
-  .option("--gerr", "Generate Global error.tsx file in the root")
-  .option("--not-found", "Generate not-found.tsx file")
-  .option("--notf", "Generate not-found.tsx file")
-  .option("--template", "Generate template.tsx file")
-  .option("--t", "Generate template.tsx file")
-  .option("--middleware", "Generate middleware.tsx file")
-  .option("--m", "Generate middleware.tsx file")
-  .action((name, path, options) => {
-    if (options.page || options.p) {
-      generateFile("page", name, path);
+  .argument("<path>", "Provide Path where to create a file.")
+  .option("-n,--name <value>", "Name of the function in the file.")
+  .option("-p,--page", "Generate page.txs file")
+  .option("-l,--layout", "Generate layout.tsx file", "test")
+  .option("-load, --loading", "Generate loading.tsx file")
+  .option("-err, --error", "Generate error.tsx file")
+  .option("-g,--global-error", "Generate global-error.tsx file in the root")
+  .option("-not,--not-found ", "Generate not-found.tsx file")
+  .option("-t, --template", "Generate template.tsx file")
+  .option("-m,--middleware", "Generate middleware.tsx file")
+  .option(
+    "-a,--all",
+    "Generate page.tsx, loading.tsx, error.tsx, not-found.tsx files."
+  )
+  .action((path, options) => {
+    const {
+      all,
+      name,
+      page,
+      layout,
+      loading,
+      error,
+      template,
+      notFound,
+      middleware,
+      globalError,
+    } = options;
+
+    if (all) {
+      generateFile("page", path, name);
+      generateFile("loading", path, name);
+      generateFile("error", path, name);
+      generateFile("not-found", path, name);
     }
 
-    if (options.layout || options.l) {
-      generateFile("layout", name, path);
+    if (page) {
+      generateFile("page", path, name);
     }
 
-    if (options.loading || options.load) {
-      generateFile("loading", name, path);
+    if (layout) {
+      generateFile("layout", path, name);
     }
 
-    if (options.error || options.err) {
-      generateFile("error", name, path);
+    if (loading) {
+      generateFile("loading", path, name);
     }
 
-    if (options.globalError || options.gerr) {
-      generateFile("global-error", "", "");
+    if (error) {
+      generateFile("error", path, name);
     }
 
-    if (options.globalError || options.gerr) {
-      generateFile("not-found", "", path);
+    if (template) {
+      generateFile("template", path, name);
     }
 
-    if (options.template || options.t) {
-      generateFile("template", name, path);
+    if (notFound) {
+      generateFile("not-found", path, name);
     }
 
-    if (options.middleware || options.m) {
+    if (middleware) {
       generateFile("middleware", "", "");
     }
 
+    if (globalError) {
+      generateFile("global-error", "", "");
+    }
+
     if (!options || options.length === 0) {
-      console.log(color.red("Please specify options"));
+      console.log(color.red("Please specify options to generate files."));
     }
   });
-
-// Command to generate a new page
-generate
-  .command("page")
-  .alias("p")
-  .argument("<name>", "Name of the Page")
-  .argument("[path]", "Path to create a page.")
-  .description("Generate a new Next.js Page")
-  .action((name, path = "") => generateFile("page", name, path));
-
-// Generate Layout
-generate
-  .command("layout")
-  .alias("l")
-  .argument("<name>", "Name of the Layout")
-  .argument("[path]", "Path to create a layout file.")
-  .description("Generate a new Next.js Layout")
-  .action((name, path = "") => generateFile("layout", name, path));
-
-// Generate Loading
-generate
-  .command("loading")
-  .alias("load")
-  .argument("<name>", "Name of the Loading file")
-  .argument("[path]", "Path to create a loading file.")
-  .description("Generate a new Next.js Loading file.")
-  .action((name, path = "") => generateFile("loading", name, path));
-
-// Generate Error
-generate
-  .command("error")
-  .alias("err")
-  .argument("<name>", "Name of the Error file")
-  .argument("[path]", "Path to create a error file.")
-  .description("Generate a new Next.js error file.")
-  .action((name, path = "") => generateFile("error", name, path));
-
-// Generate Template
-generate
-  .command("template")
-  .alias("t")
-  .argument("<name>", "Name of the template")
-  .argument("[path]", "Path to create a template file.")
-  .description("Generate a new Next.js template")
-  .action((name, path = "") => generateFile("template", name, path));
-
-// Generate Global Error
-generate
-  .command("global-error")
-  .alias("gerr")
-  .description("Generate global-error file.")
-  .action(() => generateFile("global-error", "", ""));
-
-// Generate Not-Found page
-generate
-  .command("not-found")
-  .alias("notf")
-  .argument("[name]", "Name of the not-found file")
-  .argument("[path]", "Path to create a not-found file.")
-  .description("Generate not-found.tsx file.")
-  .action((name, path) => generateFile("not-found", name, path));
-
-// Generate Middleware
-generate
-  .command("middleware")
-  .alias("m")
-  .description("Generate middleware.tsx file.")
-  .action(() => generateFile("middleware", "", ""));
 
 program.parse(process.argv);

@@ -1,15 +1,20 @@
-function capitalize(name) {
-  return name.charAt(0).toUpperCase() + name.slice(1);
+function validateName(name) {
+  if (/[^a-zA-Z\s'-]/.test(name)) {
+    return "";
+  }
+
+  const cleanedName = name.replace(/[^a-zA-Z\s'-]/g, "");
+  return cleanedName.charAt(0).toUpperCase() + cleanedName.slice(1);
 }
 
 export const pageTemplate = (pageName) => {
-  return `export default function ${capitalize(pageName)}Page() {
-  return <h1>Welcome to ${capitalize(pageName)} page!</h1>;
+  return `export default function ${validateName(pageName)}Page() {
+  return <h1>Welcome to ${validateName(pageName)} page!</h1>;
 }`;
 };
 
 export const layoutTemplate = (layoutName) => {
-  return `export default function ${capitalize(layoutName)}Layout({
+  return `export default function ${validateName(layoutName)}Layout({
   children,
 }: {
   children: React.ReactNode;
@@ -19,7 +24,7 @@ export const layoutTemplate = (layoutName) => {
 };
 
 export const loadingTemplate = (loadingName) => {
-  return `export default function ${capitalize(loadingName)}Loading() {
+  return `export default function ${validateName(loadingName)}Loading() {
   // Or a custom loading skeleton component
   return <p>Loading...</p>
 }`;
@@ -95,7 +100,7 @@ export default function NotFound() {
 };
 
 export const templateFile = (templateName) => {
-  return `export default function ${capitalize(templateName)}Template({
+  return `export default function ${validateName(templateName)}Template({
   children,
 }: {
   children: React.ReactNode;

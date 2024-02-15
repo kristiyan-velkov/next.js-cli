@@ -29,13 +29,13 @@ Built with ease of use in mind, it streamlines the setup of new routes and compo
 To use Next JS CLI, you need to have Node.js installed on your system. Once Node.js is installed, you can install next-cli globally using npm:
 
 ```txt
-npm install -g nextjs-command-line-tool
+npm install -g next-cli-turbo
 ```
 
 Or if you prefer using Yarn:
 
 ```txt
-yarn global add nextjs-command-line-tool
+yarn global add next-cli-turbo
 ```
 
 ## Commands and Usage
@@ -92,14 +92,13 @@ nc g a users
 
 This command has been extended to support the generation of specific files within a Next.js application. Users can specify which files they want to generate using options.
 
-The `generatel` it requires the following arguments:
+The `generate` it requires the following arguments:
 
 nc generate [name] [path] --option
 
 - `<name>`: Name of the Folder where the route will be created.
 - `[path]`: Optional. The path where the route will be created. If not provided, the current directory is used.
 - `--option` - anything from the list:
-
   - `---page`, `-p`: Generate a page.tsx file.
   - `--layout`, `-l`: Generate a layout.tsx file.
   - `--loading`, `--load`: Generate a loading.tsx file.
@@ -208,7 +207,7 @@ Generate not-found.tsx file.
 
 ```
 nc generate not-found users
-nc g nfound users
+nc g notf users
 ```
 
 ### generate global-error / g gerr
