@@ -122,3 +122,46 @@ export const config = {
   matcher: "",
 };`;
 };
+
+// Api Routes
+export const routeGetTemplate = () => {
+  return `export async function GET(request: Request) {
+
+}
+`;
+};
+
+export const routePostTemplate = () => {
+  return `export async function POST(request: Request) {
+
+}
+`;
+};
+
+export const routeDeleteTemplate = () => {
+  return `export async function DELETE(request: Request) {
+
+}
+`;
+};
+
+export const routePatchTemplate = () => {
+  return `export async function PATCH(request: Request) {
+
+}
+`;
+};
+
+export const routePutTemplate = () => {
+  return `export async function PUT(request: Request) {
+
+}
+`;
+};
+
+export const routeHeadTemplate = () => {
+  return `export async function HEAD(request: Request) {
+
+}
+`;
+};

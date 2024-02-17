@@ -42,6 +42,6 @@
   },
   "type": "module",
   "bin": {
-    "nc": "./cli.js"
+    "next-cli": "./cli.js"
   }
 }
