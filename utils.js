@@ -23,13 +23,11 @@ const templates = {
   middleware: middlewareTemplate,
 };
 
-export function generateFile(type, name, customPath) {
+export function generateFile(type, customPath, name = "") {
+  console.log(type, customPath, name);
   const fileName = `${type}.tsx`;
-  const directoryPath = customPath
-    ? path.join(process.cwd(), "app", customPath)
-    : path.join(process.cwd(), "app", name);
+  const directoryPath = path.join(process.cwd(), "app", customPath);
   const filePath = path.join(directoryPath, fileName);
-
   const templateFunction = templates[type];
 
   if (!templateFunction) {
@@ -42,8 +40,8 @@ export function generateFile(type, name, customPath) {
   if (!fs.existsSync(filePath)) {
     fs.ensureDirSync(directoryPath);
     fs.writeFileSync(filePath, template);
-    console.log(color.greenBright(`${name} ${type} has been created.`));
+    console.log(color.greenBright(`File ${type} has been created.`));
   } else {
-    console.log(color.redBright(`${name} ${type} already exists.`));
+    console.log(color.redBright(`File ${type} already exists.`));
   }
 }
