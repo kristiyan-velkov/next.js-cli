@@ -3,7 +3,7 @@
 <p align="center">
     <picture>
       <source media="(prefers-color-scheme: dark)" srcset="./next-js-cli.png">
-      <img src="./next-js-cli.png" height="128">
+      <img src="./images/next-js-cli.png" height="auto">
     </picture>
 </p>
 
@@ -42,7 +42,7 @@ yarn global add next-cli-turbo
 
 ### init
 
-⌛️ nc g i `<projectName>`
+- ⌛️ nc g i `<projectName>`
 
 The `init` command is used to create a new Next.js application. It requires a single argument:
 
@@ -59,8 +59,8 @@ nc i my-next-app
 
 ### generate all
 
-🧪 nc generate [path] --all
-⌛️ nc g [path] -a
+- 🧪 nc generate [path] --all
+- ⌛️ nc g [path] -a
 
 The generate all command has been augmented to automatically create a set of predefined files (**page, loading, error, not-found**) for a new route. This is useful for quickly scaffolding the basic structure of a route within a Next.js application.
 
@@ -68,7 +68,7 @@ Requires the following arguments:
 
 - `[path]`: The path where the files will be created.
 - `--option` - anything from the list:
-  - `-a`, `--all`,: Generate page.tsx, error.tsx, loading.tsx, not-found.tsx files.
+  - `-a`, `--all`: Generate page.tsx, error.tsx, loading.tsx, not-found.tsx files.
   - `-n`, `--name`: Special name for the files **page.tsx, loading.tsx**.
     - Default names: Page, Loding.
 
@@ -94,7 +94,7 @@ nc g -a users
 
 ### generate
 
-⌛️ nc g [path] --option
+- ⌛️ nc g [path] --option
 
 This command has been extended to support the generation of specific files within a Next.js application. Users can specify which files they want to generate using options.
 
@@ -106,12 +106,12 @@ nc generate [path] --option --option
 
 - `[path]`: The path where the files will be created.
 - `--option` - anything from the list:
-  - `-a`, `--all`,: Generate page.tsx, error.tsx, loading.tsx, not-found.tsx files.
+  - `-a`, `--all`: Generate page.tsx, error.tsx, loading.tsx, not-found.tsx files.
   - `-n`, `--name`: Special name for the files page.tsx, loading.tsx,layout.tsx and template.tsx files.
-  - `-p`,`---page`,: Generate a page.tsx file.
-  - `-l`,`--layout`, : Generate a layout.tsx file.
+  - `-p`,`---page`: Generate a page.tsx file.
+  - `-l`,`--layout`: Generate a layout.tsx file.
   - `-load`,`--loading`: Generate a loading.tsx file.
-  - `-err`,`--error`, : Generate an error.tsx file.
+  - `-err`,`--error`: Generate an error.tsx file.
   - `-g`,`--globalError`: Generate a global-error.tsx file in the root directory.
   - `-not`,`--not-found`: Generate a not-found.tsx file.
   - `-t`,`--template`: Generate a template.tsx file.
@@ -160,14 +160,14 @@ nc g dashboard dashboard -p -err -not
 
 ### Page.tsx file
 
-🧪 nc generate [path] --page
-⌛️ nc g [path] -p
+- 🧪 nc generate [path] --page
+- ⌛️ nc g [path] -p
 
 This command simplifies the creation of individual pages within a Next.js application by specifying the path of the page and, optionally, the name where it should be created.
 
 - `[path]`: The path where the files will be created.
 - `--option` - anything from the list:
-  - `-p`, `--page`,: Generate page.tsx file.
+  - `-p`, `--page`: Generate page.tsx file.
   - `-n`, `--name`: Special name for function in the file **page.tsx**,
     - Default name: Page.
 
@@ -190,14 +190,14 @@ nc g users -p
 
 ### Layout.tsx file
 
-🧪 nc generate [path] --layout
-⌛️ nc g [path] -l
+- 🧪 nc generate [path] --layout
+- ⌛️ nc g [path] -l
 
 This command is tailored for creating layout components, which serve as templates for various parts of a Next.js application, ensuring consistency across different pages. By specifying the name of the layout and, optionally, the path, developers can quickly scaffold necessary layout components.
 
 - `[path]`: The path where the files will be created.
 - `--option`
-  - `-l`, `--layout`,: Generate layout.tsx file.
+  - `-l`, `--layout`: Generate layout.tsx file.
   - `-n`, `--name`: Special name for function in the file **layout.tsx**,
     - Default name: Layout.
 
@@ -220,14 +220,14 @@ nc g users -l -n Users
 
 ### Loading.tsx file
 
-🧪 nc generate [path] --loading
-⌛️ nc g [path] -load
+- 🧪 nc generate [path] --loading
+- ⌛️ nc g [path] -load
 
 This command is tailored for creating loading components.
 
 - `[path]`: The path where the files will be created.
 - `--option`
-  - `-load`, `--loading`,: Generate loading.tsx file.
+  - `-load`, `--loading`: Generate loading.tsx file.
   - `-n`, `--name`: Special name for function in the file **loading.tsx**,
     - Default name: Loading.
 
@@ -250,14 +250,14 @@ nc g users -load -n Users
 
 ### Error.tsx
 
-🧪 nc generate [path] --error
-⌛️ nc g [path] -err
+- 🧪 nc generate [path] --error
+- ⌛️ nc g [path] -err
 
 Create error.tsx file.
 
 - `[path]`: The path where the files will be created.
 - `--option`
-  - `-err`, `--error`,: Generate error.tsx file.
+  - `-err`, `--error`: Generate error.tsx file.
     - Default name: Error.
 
 **Example usage**:
@@ -279,14 +279,14 @@ nc g users -err
 
 ### Template.tsx
 
-🧪 nc generate [path] --template
-⌛️ nc g [path] -t
+- 🧪 nc generate [path] --template
+- ⌛️ nc g [path] -t
 
 Create template.tsx file.
 
 - `[path]`: The path where the files will be created.
 - `--option`
-  - `-t`, `--template`,: Generate template.tsx file.
+  - `-t`, `--template`: Generate template.tsx file.
     - Default name: Template.
 
 **Example usage**:
@@ -308,14 +308,14 @@ nc g users -t
 
 ### Not-found.tsx file
 
-🧪 nc generate [page] --not-found
-⌛️ nc g [page] -not
+- 🧪 nc generate [page] --not-found
+- ⌛️ nc g [page] -not
 
 Generate not-found.tsx file.
 
 - `[path]`: The path where the files will be created.
 - `--option`
-  - `-not`, `--not-found`,: Generate not-found.tsx file.
+  - `-not`, `--not-found`: Generate not-found.tsx file.
 
 **Example usage**:
 
@@ -336,8 +336,8 @@ nc g users -not
 
 ### Global-error.tsx file
 
-🧪 nc generate root --global-error
-⌛️ nc g r -g
+- 🧪 nc generate root --global-error
+- ⌛️ nc g r -g
 
 Generate global-error.tsx file in the root of the project.
 
@@ -359,8 +359,8 @@ nc g r -g
 
 ### Middleware.tsx file
 
-🧪 nc generate root --middleware
-⌛️ nc g r -m
+- 🧪 nc generate root --middleware
+- ⌛️ nc g r -m
 
 Generate middleware.tsx file.
 
@@ -397,16 +397,20 @@ Please, contact the creator of the **Next CLI**, so he will be able to fix or im
 
 ## Support my work
 
-If you like my work and want to support me to work harder, please donate via
+If you like my work and want to support me to work hard, please donate via:
 
-<a href="https://revolut.me/kristiyanvelkov" title="Link to Revolut">Revolut</a> | <a href="https://www.buymeacoffee.com/kristiyanVelkov" title="Link to Buy me a coffee">Buy me a coffee</a>
+| <a href="https://revolut.me/kristiyanvelkov" title="Link to Revolut">Revolut</a>                                                                                    | <a href="https://www.buymeacoffee.com/kristiyanVelkov" title="Link to Buy me a coffee">Buy me a coffee</a>                                                                                                                                                                                                                  |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| <a href="https://revolut.me/kristiyanvelkov" target="_blank"><img src="./images/kristiyan.velkov-revolut.png" width="200px"  alt="Krisityan Velkov - Revolut"/></a> | <a href="https://www.buymeacoffee.com/kristiyanVelkov" style="background:red,height='500px'"><img src="https://img.buymeacoffee.com/button-api/?text=Buy me a coffee&emoji=☕&slug=kristiyanVelkov&button_colour=000000&font_colour=ffffff&font_family=Lato&outline_colour=ffffff&coffee_colour=FFDD00" width="200px"/></a> |
 
-Thanks a bunch for supporting me! 😍
+Thanks a bunch for supporting me! It means a LOT 😍
 
 ---
 
 ## Contributing
 
-Contributions are welcome! If you have suggestions for improving `next CLI`, please open an issue or submit a pull request.
+Contributions are welcome! ❤️
+
+If you have suggestions for improving `next CLI`, please open an issue and submit a pull request.  
 
 ---
