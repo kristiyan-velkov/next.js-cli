@@ -1,13 +1,16 @@
-[![Follow me](https://img.shields.io/badge/sponsors-99+-orange.svg)](https://github.com/kristiyan-velkov) [![Sponsors](https://img.shields.io/badge/Follow-120-blue?logo=github&style=social.svg)](https://github.com/kristiyan-velkov) [![MIT License](https://img.shields.io/badge/License-MIT-yellow.svg)](https://choosealicense.com/licenses/mit/) [![Node Version](https://img.shields.io/badge/node-%3E%3D%2020.0.0-brightgreen.svg)](https://nodejs.org/en/)
-
-<p align="center">
+<div align="center">
     <picture>
       <source media="(prefers-color-scheme: dark)" srcset="./next-js-cli.png">
       <img src="./images/next-js-cli.png" height="auto">
     </picture>
-</p>
 
-**Next.js CLI** is a powerful command-line interface tool designed to accelerate the development of Next.js applications by automating the generation of common file types, such as **pages, layouts**, **templates, errors, middlewares and more**.
+[![Follow me](https://img.shields.io/badge/sponsors-99+-orange.svg)](https://github.com/kristiyan-velkov) [![Sponsors](https://img.shields.io/badge/Follow-120-blue?logo=github&style=social.svg)](https://github.com/kristiyan-velkov) [![MIT License](https://img.shields.io/badge/License-MIT-yellow.svg)](https://choosealicense.com/licenses/mit/) [![Node Version](https://img.shields.io/badge/node-%3E%3D%2020.0.0-brightgreen.svg)](https://nodejs.org/en/)
+
+<h1>Next.js CLI </h1>
+
+</div>
+
+Powerful command-line interface tool designed to accelerate the development of Next.js applications by automating the generation of common file types, such as **pages, layouts**, **templates, errors, middlewares and more**.
 
 Built with ease of use in mind, it streamlines the setup of new routes and components, allowing developers to focus on building their applications faster.
 
@@ -411,6 +414,6 @@ Thanks a bunch for supporting me! It means a LOT 😍
 
 Contributions are welcome! ❤️
 
-If you have suggestions for improving `next CLI`, please open an issue and submit a pull request.  
+If you have suggestions for improving `next CLI`, please open an issue and submit a pull request.
 
 ---
