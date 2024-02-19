@@ -1,6 +1,6 @@
 {
   "name": "next-cli-turbo",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "This CLI tool is designed to automate and simplify common tasks in Next.js development, such as creating pages and components. It aims to improve developer productivity by providing easy-to-use commands for quickly scaffolding new parts of a Next.js application.",
   "main": "cli.js",
   "repository": {
