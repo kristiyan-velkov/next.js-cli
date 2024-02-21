@@ -47,12 +47,8 @@ generate
   .option("-err, --error", "Generate error.tsx file.")
   .option("-not, --not-found ", "Generate not-found.tsx file.")
   .option("-t, --template", "Generate template.tsx file.")
-  .option("-rget, --route-get", "Generate route.tsx GET file.")
-  .option("-rpost, --route-post", "Generate route.tsx POST file.")
-  .option("-rput, --route-put", "Generate route.tsx PUT file.")
-  .option("-rdelete, --route-delete", "Generate route.tsx DELETE file.")
-  .option("-rpatch, --route-patch", "Generate route.tsx PATCH file.")
-  .option("-rhead, --route-head", "Generate route.tsx Head file.")
+  .option("-d, --default-file", "Generate default.tsx file.")
+  .option("-r, --route", "Generate route.tsx file.")
   .option(
     "-a, --all",
     "Generate page.tsx, loading.tsx, error.tsx, not-found.tsx files."
@@ -65,14 +61,10 @@ generate
       layout,
       loading,
       error,
-      template,
       notFound,
-      routeGet,
-      routeDelete,
-      routePost,
-      routePut,
-      routePatch,
-      routeHead,
+      template,
+      defaultFile,
+      route,
     } = options;
 
     if (all) {
@@ -98,36 +90,20 @@ generate
       generateFile("error", path, name);
     }
 
-    if (template) {
-      generateFile("template", path, name);
-    }
-
     if (notFound) {
       generateFile("not-found", path, name);
     }
 
-    if (routeGet) {
-      generateFile("route", `api/${path}`, "", "routeGet");
+    if (template) {
+      generateFile("template", path, name);
     }
 
-    if (routePost) {
-      generateFile("route", `api/${path}`, "", "routePost");
+    if (defaultFile) {
+      generateFile("default", path, name);
     }
 
-    if (routeDelete) {
-      generateFile("route", `api/${path}`, "", "routeDelete");
-    }
-
-    if (routePatch) {
-      generateFile("route", `api/${path}`, "", "routePatch");
-    }
-
-    if (routePut) {
-      generateFile("route", `api/${path}`, "", "routePut");
-    }
-
-    if (routeHead) {
-      generateFile("route", `api/${path}`, "", "routeHead");
+    if (route) {
+      generateFile("route", `api/${path}`, "");
     }
 
     if (Object.keys(options).length === 0) {

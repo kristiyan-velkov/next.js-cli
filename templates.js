@@ -8,13 +8,17 @@ function validateName(name) {
 }
 
 export const pageTemplate = (pageName) => {
-  return `export default function ${validateName(pageName)}Page() {
-  return <h1>Welcome to ${validateName(pageName)} page!</h1>;
+  const name = validateName(pageName);
+
+  return `export default function ${name}Page() {
+  return <h1>Welcome to ${name}page!</h1>;
 }`;
 };
 
 export const layoutTemplate = (layoutName) => {
-  return `export default function ${validateName(layoutName)}Layout({
+  const name = validateName(layoutName);
+
+  return `export default function ${name}Layout({
   children,
 }: {
   children: React.ReactNode;
@@ -24,7 +28,8 @@ export const layoutTemplate = (layoutName) => {
 };
 
 export const loadingTemplate = (loadingName) => {
-  return `export default function ${validateName(loadingName)}Loading() {
+  const name = validateName(loadingName);
+  return `export default function ${name}Loading() {
   // Or a custom loading skeleton component
   return <p>Loading...</p>
 }`;
@@ -100,7 +105,8 @@ export default function NotFound() {
 };
 
 export const templateFile = (templateName) => {
-  return `export default function ${validateName(templateName)}Template({
+  const name = validateName(templateName);
+  return `export default function ${name}Template({
   children,
 }: {
   children: React.ReactNode;
@@ -123,45 +129,21 @@ export const config = {
 };`;
 };
 
-// Api Routes
-export const routeGetTemplate = () => {
-  return `export async function GET(request: Request) {
+export const routeTemplate = () => {
+  return `export async function GET(request: Request) {}
 
-}
+export async function HEAD(request: Request) {}
+
+export async function POST(request: Request) {}
+
+export async function PUT(request: Request) {}
+
+export async function DELETE(request: Request) {}
+
+export async function PATCH(request: Request) {}
 `;
 };
 
-export const routePostTemplate = () => {
-  return `export async function POST(request: Request) {
-
-}
-`;
-};
-
-export const routeDeleteTemplate = () => {
-  return `export async function DELETE(request: Request) {
-
-}
-`;
-};
-
-export const routePatchTemplate = () => {
-  return `export async function PATCH(request: Request) {
-
-}
-`;
-};
-
-export const routePutTemplate = () => {
-  return `export async function PUT(request: Request) {
-
-}
-`;
-};
-
-export const routeHeadTemplate = () => {
-  return `export async function HEAD(request: Request) {
-
-}
-`;
+export const defaultFileTemplate = () => {
+  return `export default function Default() {}`;
 };
