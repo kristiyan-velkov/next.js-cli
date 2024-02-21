@@ -40,20 +40,32 @@ program
 generate
   .description("Generate a new Next.js App routes with files.")
   .argument("<path>", "Provide Path where to create a file.")
-  .option("-n,--name <value>", "Name of the function in the file.")
-  .option("-p,--page", "Generate page.txs file")
-  .option("-l,--layout", "Generate layout.tsx file", "test")
-  .option("-load, --loading", "Generate loading.tsx file")
-  .option("-err, --error", "Generate error.tsx file")
-  .option("-not,--not-found ", "Generate not-found.tsx file")
-  .option("-t, --template", "Generate template.tsx file")
+  .option("-n, --name <value>", "Name of the function in the file.")
+  .option("-p, --page", "Generate page.txs file.")
+  .option("-l, --layout", "Generate layout.tsx file.")
+  .option("-load, --loading", "Generate loading.tsx file.")
+  .option("-err, --error", "Generate error.tsx file.")
+  .option("-not, --not-found ", "Generate not-found.tsx file.")
+  .option("-t, --template", "Generate template.tsx file.")
+  .option("-d, --default-file", "Generate default.tsx file.")
+  .option("-r, --route", "Generate route.tsx file.")
   .option(
-    "-a,--all",
+    "-a, --all",
     "Generate page.tsx, loading.tsx, error.tsx, not-found.tsx files."
   )
   .action((path, options) => {
-    const { all, name, page, layout, loading, error, template, notFound } =
-      options;
+    const {
+      all,
+      name,
+      page,
+      layout,
+      loading,
+      error,
+      notFound,
+      template,
+      defaultFile,
+      route,
+    } = options;
 
     if (all) {
       generateFile("page", path, name);
@@ -78,16 +90,28 @@ generate
       generateFile("error", path, name);
     }
 
-    if (template) {
-      generateFile("template", path, name);
-    }
-
     if (notFound) {
       generateFile("not-found", path, name);
     }
 
-    if (!options || options.length === 0) {
-      console.log(color.red("Please specify options to generate files."));
+    if (template) {
+      generateFile("template", path, name);
+    }
+
+    if (defaultFile) {
+      generateFile("default", path, name);
+    }
+
+    if (route) {
+      generateFile("route", `api/${path}`, "");
+    }
+
+    if (Object.keys(options).length === 0) {
+      console.log(
+        color.red(
+          "Please specify option to generate files. View nc generate --help"
+        )
+      );
     }
   });
 

@@ -109,15 +109,18 @@ nc generate [path] --option --option
 
 - `[path]`: The path where the files will be created.
 - `--option` - anything from the list:
+
   - `-a`, `--all`: Generate page.tsx, error.tsx, loading.tsx, not-found.tsx files.
   - `-n`, `--name`: Special name for the files page.tsx, loading.tsx,layout.tsx and template.tsx files.
   - `-p`,`---page`: Generate a page.tsx file.
   - `-l`,`--layout`: Generate a layout.tsx file.
+  - `-t`,`--template`: Generate a template.tsx file.
   - `-load`,`--loading`: Generate a loading.tsx file.
   - `-err`,`--error`: Generate an error.tsx file.
-  - `-g`,`--globalError`: Generate a global-error.tsx file in the root directory.
   - `-not`,`--not-found`: Generate a not-found.tsx file.
-  - `-t`,`--template`: Generate a template.tsx file.
+  - `-d`,`--default-file`: Generate a default.tsx file.
+  - `-r`,`--route`: Generate a route.tsx file.
+  - `-g`,`--globalError`: Generate a global-error.tsx file in the root directory.
   - `-m`,`--middleware`: Generate a middleware.tsx file.
 
 **Example usage**:
@@ -309,6 +312,34 @@ nc g users -t
 
 ---
 
+### Default.tsx file
+
+- 🧪 nc generate [page] --default-file
+- ⌛️ nc g [page] -d
+
+Generate default.tsx file.
+
+- `[path]`: The path where the files will be created.
+- `--option`
+  - `-d`, `--default-file`: Generate default.tsx file.
+
+**Example usage**:
+
+```
+nc generate users --default-file
+nc g users -d
+```
+
+**Result**:
+
+```js
+-app
+--users
+---default.tsx
+```
+
+---
+
 ### Not-found.tsx file
 
 - 🧪 nc generate [page] --not-found
@@ -333,6 +364,35 @@ nc g users -not
 -app
 --users
 ---not-found.tsx
+```
+
+---
+
+### Route.tsx file
+
+- 🧪 nc generate [page] --route
+- ⌛️ nc g [page] -r
+
+Generate route.tsx file.
+
+- `[path]`: The path where the files will be created.
+- `--option`
+  - `-r`, `--route`: Generate route.tsx file in api folder.
+
+**Example usage**:
+
+```
+nc generate users --route
+nc g users -r
+```
+
+**Result**:
+
+```js
+-app
+-- api
+---users
+----route.tsx
 ```
 
 ---

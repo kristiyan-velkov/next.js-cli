@@ -10,6 +10,12 @@ import {
   notFoundTemplate,
   templateFile,
   middlewareTemplate,
+  routeGetTemplate,
+  routePostTemplate,
+  routePatchTemplate,
+  routeDeleteTemplate,
+  routePutTemplate,
+  routeHeadTemplate,
 } from "./templates.js";
 
 const templates = {
@@ -21,14 +27,19 @@ const templates = {
   "global-error": globalErrorsTemplate,
   "not-found": notFoundTemplate,
   middleware: middlewareTemplate,
+  routeGet: routeGetTemplate,
+  routePost: routePostTemplate,
+  routeDelete: routeDeleteTemplate,
+  routePatch: routePatchTemplate,
+  routePut: routePutTemplate,
+  routeHead: routeHeadTemplate,
 };
 
-export function generateFile(type, customPath, name = "") {
-  console.log(type, customPath, name);
+export function generateFile(type, customPath, name = "", customType = "") {
   const fileName = `${type}.tsx`;
   const directoryPath = path.join(process.cwd(), "app", customPath);
   const filePath = path.join(directoryPath, fileName);
-  const templateFunction = templates[type];
+  const templateFunction = templates[customType || type];
 
   if (!templateFunction) {
     console.log(color.redBright(`Unsupported file type: ${type}`));
