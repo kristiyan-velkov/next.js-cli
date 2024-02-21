@@ -12,11 +12,9 @@ import {
   middlewareTemplate,
   routeTemplate,
   defaultFileTemplate,
-} from "./templates";
+} from "next-cli-turbo/templates.js";
 
-type TemplateFunction = (name: string) => string;
-
-const defaultTemplates: Record<string, TemplateFunction> = {
+const defaultTemplates = {
   page: pageTemplate,
   loading: loadingTemplate,
   layout: layoutTemplate,
@@ -29,14 +27,14 @@ const defaultTemplates: Record<string, TemplateFunction> = {
   default: defaultFileTemplate,
 };
 
-export async function generateFile(
-  type: string,
-  filePath: string,
-  fileTemplate: string,
+export default async function generateFile(
+  type,
+  filePath,
+  fileTemplate,
   fileExtension = ".tsx",
-  name: string = "",
-  customType: string = ""
-): Promise<boolean> {
+  name = "",
+  customType = ""
+) {
   const fileName = `${type}${fileExtension}`;
   const pathToCreateFile = path.join(filePath, fileName);
   const templateContent =
