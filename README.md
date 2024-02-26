@@ -14,6 +14,8 @@ Powerful command-line interface tool designed to accelerate the development of N
 
 Built with ease of use in mind, it streamlines the setup of new routes and components, allowing developers to focus on building their applications faster.
 
+🚀 **For Visual Studio Code**: Try the [Next.js File Generator](https://marketplace.visualstudio.com/items?itemName=KristiyanVelkov.nextjs-file-gelenator) extension!
+
 ---
 
 ## Table of contents
